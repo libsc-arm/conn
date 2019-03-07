@@ -20,6 +20,10 @@ void cpuid(unsigned int leaf, struct cpu_regs_t *cr) {
     __get_cpuid(leaf, &(cr->eax), &(cr->ebx), &(cr->ecx), &(cr->edx));
 }
 
+void cpuid_count(unsigned int leaf, unsigned int subleaf, struct cpu_regs_t *cr) {
+    __get_cpuid_count(leaf, subleaf, &(cr->eax), &(cr->ebx), &(cr->ecx), &(cr->edx));
+}
+
 bool cpuid_basic_support() {
     return cpuid_max(EXT_MIN, NULL);
 }
@@ -29,6 +33,6 @@ bool cpuid_extended_support() {
 }
 
 void clear_regs(struct cpu_regs_t *cr) {
-    memset(cr, 0, sizeof(cr));
+    memset(cr, 0, sizeof(struct cpu_regs_t));
 }
 

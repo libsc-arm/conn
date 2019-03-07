@@ -36,6 +36,15 @@ bool cpuid_max(unsigned int, unsigned int *);
  */
 
 void cpuid(unsigned int, struct cpu_regs_t *);
+
+/*
+ * Wrapper over __get_cpuid_count instructino from gcc.
+ * Use this instruction wherever you've to ensure the
+ * contents of the ecx register.
+ */
+
+void cpuid_count(unsigned int, unsigned int, struct cpu_regs_t *);
+
 void clear_regs(struct cpu_regs_t *);
 
 
